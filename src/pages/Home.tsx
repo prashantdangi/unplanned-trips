@@ -343,7 +343,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/sissu.jpg"
+                  src="https://static.thehosteller.com/hostel/images/sissu%20lake.jpg/sissu%20lake-1721310104493.jpg"
                   alt="Sissu"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
