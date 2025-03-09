@@ -57,7 +57,7 @@ export function About() {
               {
                 name: "Ayaz",
                 role: "Head of Adventures",
-                image: "images/ayaz.jpg"
+                image: "https://yt3.googleusercontent.com/6hRjus18aeW8WQ7q4oOt-ismu095mx05Lsg6qLzFrCuxIkoUKCrbaV4VUGnFR4Tl6TiPSTkP0A=s160-c-k-c0x00ffffff-no-rj"
               },
               // {
               //   name: "Emma Williams",

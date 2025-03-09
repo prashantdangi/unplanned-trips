@@ -13,7 +13,7 @@ export function WeekendGetaways() {
   const trips = [
     {
       title: "Jibhi & Tirthan Valley",
-      image: "/images/Jibhi_tirthan_valley.jpg",
+      image: "https://journeybasket.com/wp-content/uploads/2023/05/main-banner.jpg",
       description: "Discover the hidden gems of Himachal Pradesh in these serene valleys.",
       price: 7999,
       originalPrice: 9999,
@@ -21,7 +21,7 @@ export function WeekendGetaways() {
     },
     {
       title: "Manali Adventure",
-      image: "/images/manali.jpg",
+      image: "https://risingkashmir.blr1.digitaloceanspaces.com/wp-content/uploads/2024/05/10010628/Image-View-1-30.png",
       description: "Experience the adventure paradise with thrilling activities and snow-capped peaks.",
       price: 7999,
       originalPrice: 9999,
@@ -29,7 +29,7 @@ export function WeekendGetaways() {
     },
     {
       title: "Kasol Backpacking",
-      image: "/images/kasol.jpg",
+      image: "https://cdn.abhibus.com/2024/05/Things-to-Do-in-Kasol.jpg",
       description: "Explore the Mini Israel of India with its unique culture and stunning landscapes.",
       price: 7999,
       originalPrice: 9999,
@@ -37,7 +37,7 @@ export function WeekendGetaways() {
     },
     {
       title: "Sissu & Spiti Valley",
-      image: "/images/sissu.jpg",
+      image: "https://static.thehosteller.com/hostel/images/sissu%20lake.jpg/sissu%20lake-1721310104493.jpg",
       description: "Journey through the gateway to Spiti and discover the cold desert mountains.",
       price: 7999,
       originalPrice: 9999,
@@ -45,7 +45,7 @@ export function WeekendGetaways() {
     },
     {
       title: "Chopta-Tungnath Trek",
-      image: "/images/Chopta-Tungnath.jpg",
+      image: "https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_w_800_c_fill_g_auto_q_auto:good_f_jpg/v1481019868/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Chopta_Blog1.jpg",
       description: "Trek to heaven through the magnificent Himalayan trails to the highest Shiva temple.",
       price: 7999,
       originalPrice: 9999,
@@ -53,7 +53,7 @@ export function WeekendGetaways() {
     },
     {
       title: "Sangla Valley",
-      image: "/images/Sangla-Valley.jpg",
+      image: "https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_c_fill_q_auto:good_f_auto_w_800_h_500/v1497334734/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Sangla_Valleyc.jpg",
       description: "Experience tranquility in the beautiful Sangla Valley of Kinnaur region.",
       price: 7999,
       originalPrice: 9999,
