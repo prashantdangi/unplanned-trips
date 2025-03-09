@@ -298,7 +298,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/Jibhi_tirthan_valley.jpg"
+                  src="https://journeybasket.com/wp-content/uploads/2023/05/main-banner.jpg"
                   alt="Jibhi and Trithan Valley"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -313,7 +313,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/manali.jpg"
+                  src="https://risingkashmir.blr1.digitaloceanspaces.com/wp-content/uploads/2024/05/10010628/Image-View-1-30.png"
                   alt="Manali"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -328,7 +328,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/kasol.jpg"
+                  src="https://cdn.abhibus.com/2024/05/Things-to-Do-in-Kasol.jpg"
                   alt="Kasol"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -358,7 +358,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/Chopta-Tungnath.jpg"
+                  src="https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_w_800_c_fill_g_auto_q_auto:good_f_jpg/v1481019868/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Chopta_Blog1.jpg"
                   alt="Chopta-Tungnath"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -373,7 +373,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="/images/Sangla-Valley.jpg"
+                  src="https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_c_fill_q_auto:good_f_auto_w_800_h_500/v1497334734/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Sangla_Valleyc.jpg"
                   alt="Sangla"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
