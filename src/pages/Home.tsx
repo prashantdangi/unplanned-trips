@@ -313,7 +313,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="images/manali.jpg"
+                  src="/images/manali.jpg"
                   alt="Manali"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -328,7 +328,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="images/kasol.jpg"
+                  src="/images/kasol.jpg"
                   alt="Kasol"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -343,7 +343,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="images/sissu.jpg"
+                  src="/images/sissu.jpg"
                   alt="Sissu"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -358,7 +358,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="images/Chopta-Tungnath.jpg"
+                  src="/images/Chopta-Tungnath.jpg"
                   alt="Chopta-Tungnath"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -373,7 +373,7 @@ Message: ${formData.message}
             <SwiperSlide>
               <div className="relative group overflow-hidden rounded-lg">
                 <img
-                  src="images/Sangla-Valley.jpg"
+                  src="/images/Sangla-Valley.jpg"
                   alt="Sangla"
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                 />
