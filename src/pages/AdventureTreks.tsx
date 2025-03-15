@@ -12,6 +12,14 @@ export function AdventureTreks() {
 
   const trips = [
     {
+      title: "Kashmir",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Neeulm_Valley_AJK_%28Arang_Kel%29.jpg/800px-Neeulm_Valley_AJK_%28Arang_Kel%29.jpg",
+      description: "Renowned for its stunning natural beauty known as Paradise on Earth",
+      price: 7999,
+      originalPrice: 9999,
+      duration: "4 days"
+    },
+    {
       title: "Jibhi & Tirthan Valley",
       image: "https://journeybasket.com/wp-content/uploads/2023/05/main-banner.jpg",
       description: "Trek through the hidden trails of Himachal's serene valleys.",

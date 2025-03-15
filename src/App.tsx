@@ -11,10 +11,20 @@ import { CorporateTrips } from './pages/CorporateTrips';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Home } from './pages/Home';
+import {
+  Kashmir,
+  JibhiTrithan,
+  Manali,
+  Kasol,
+  Sissu,
+  ChoptaTungnath
+} from './pages/destinations';
+import { ScrollToTop } from './components/ScrollToTop';
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +36,14 @@ function App() {
         <Route path="/corporate" element={<CorporateTrips />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        
+        {/* Destination Routes */}
+        <Route path="/destinations/kashmir" element={<Kashmir />} />
+        <Route path="/destinations/jibhi-trithan" element={<JibhiTrithan />} />
+        <Route path="/destinations/manali" element={<Manali />} />
+        <Route path="/destinations/kasol" element={<Kasol />} />
+        <Route path="/destinations/sissu" element={<Sissu />} />
+        <Route path="/destinations/chopta-tungnath" element={<ChoptaTungnath />} />
       </Routes>
       <Footer />
     </div>

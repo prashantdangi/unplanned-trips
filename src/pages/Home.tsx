@@ -1,15 +1,72 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, MessageSquare as WhatsappIcon, User } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, MessageSquare as WhatsappIcon, User, ChevronDown } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/navigation';
+
+type TripCategory = {
+  title: string;
+  destinations: {
+    name: string;
+    link: string;
+  }[];
+};
+
+const tripCategories: TripCategory[] = [
+  {
+    title: "Backpacking Trips",
+    destinations: [
+      { name: "Kasol", link: "/destinations/kasol" },
+      { name: "Manali", link: "/destinations/manali" },
+      { name: "Jibhi", link: "/destinations/jibhi-trithan" }
+    ]
+  },
+  {
+    title: "Weekend Getaways",
+    destinations: [
+      { name: "Chopta-Tungnath", link: "/destinations/chopta-tungnath" },
+      { name: "Sissu", link: "/destinations/sissu" }
+    ]
+  },
+  {
+    title: "Solo Travels",
+    destinations: [
+      { name: "Kashmir", link: "/destinations/kashmir" },
+      { name: "Kasol", link: "/destinations/kasol" },
+      { name: "Manali", link: "/destinations/manali" }
+    ]
+  },
+  {
+    title: "Adventure Treks",
+    destinations: [
+      { name: "Chopta-Tungnath", link: "/destinations/chopta-tungnath" },
+      { name: "Kashmir", link: "/destinations/kashmir" }
+    ]
+  },
+  {
+    title: "Honeymoon Trips",
+    destinations: [
+      { name: "Kashmir", link: "/destinations/kashmir" },
+      { name: "Jibhi", link: "/destinations/jibhi-trithan" }
+    ]
+  },
+  {
+    title: "Corporate Trips",
+    destinations: [
+      { name: "Manali", link: "/destinations/manali" },
+      { name: "Sissu", link: "/destinations/sissu" }
+    ]
+  }
+];
 
 export function Home() {
   const location = useLocation();
   const state = location.state as { defaultMessage?: string } | null;
   const [searchQuery, setSearchQuery] = React.useState('');
   const navigate = useNavigate();
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
 
   const [formData, setFormData] = React.useState({
     fullName: '',
@@ -77,6 +134,78 @@ Message: ${formData.message}
 
   return (
     <>
+      {/* Mobile Categories Navigation */}
+      <div className="md:hidden bg-white shadow-md overflow-x-auto">
+        <div className="flex whitespace-nowrap p-4">
+          {tripCategories.map((category) => (
+            <div
+              key={category.title}
+              className="relative inline-block mr-4 last:mr-0"
+            >
+              <button
+                onClick={() => setOpenDropdown(openDropdown === category.title ? null : category.title)}
+                className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-700 hover:text-blue-600 font-medium"
+              >
+                <span>{category.title}</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              
+              {openDropdown === category.title && (
+                <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                  {category.destinations.map((destination) => (
+                    <Link
+                      key={destination.name}
+                      to={destination.link}
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      onClick={() => setOpenDropdown(null)}
+                    >
+                      {destination.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Categories Navigation Bar */}
+      <nav className="hidden md:block bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-center space-x-8">
+            {tripCategories.map((category) => (
+              <div
+                key={category.title}
+                className="relative group"
+                onMouseEnter={() => setOpenDropdown(category.title)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button
+                  className="flex items-center space-x-1 py-4 px-2 text-gray-700 hover:text-blue-600 font-medium"
+                >
+                  <span>{category.title}</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                
+                {openDropdown === category.title && (
+                  <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                    {category.destinations.map((destination) => (
+                      <Link
+                        key={destination.name}
+                        to={destination.link}
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      >
+                        {destination.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <header className="relative h-screen">
         <div className="absolute inset-0">
@@ -117,117 +246,90 @@ Message: ${formData.message}
         </div>
       </header>
 
-      {/* Trip Categories Section */}
+      {/* Hottest Destinations - Now Static */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Explore Our Trip Categories</h2>
+          <div className="flex items-center justify-center space-x-3 mb-16">
+            <Sun className="w-8 h-8 text-yellow-400" />
+            <h2 className="text-3xl md:text-4xl font-bold text-center">Popular Destinations</h2>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Link to="/backpacking" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
-                    alt="Backpacking"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <Backpack className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Backpacking Trips</h3>
-                  <p className="text-lg">Adventure on a budget with like-minded travelers</p>
-                </div>
+            <Link to="/destinations/kashmir" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Neeulm_Valley_AJK_%28Arang_Kel%29.jpg/800px-Neeulm_Valley_AJK_%28Arang_Kel%29.jpg"
+                alt="Kashmir"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Kashmir</h3>
+                <p className="text-gray-200">Paradise on Earth</p>
               </div>
             </Link>
 
-            <Link to="/weekend-getaways" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
-                    alt="Weekend Getaways"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <Calendar className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Weekend Getaways</h3>
-                  <p className="text-lg">Perfect short breaks to recharge</p>
-                </div>
+            <Link to="/destinations/jibhi-trithan" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://journeybasket.com/wp-content/uploads/2023/05/main-banner.jpg"
+                alt="Jibhi and Trithan Valley"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Jibhi & Trithan Valley</h3>
+                <p className="text-gray-200">Hidden gems of Himachal</p>
               </div>
             </Link>
 
-            <Link to="/solo-travels" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1503221043305-f7498f8b7888?auto=format&fit=crop&w=800&q=80"
-                    alt="Solo Travels"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <User className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Solo Travels</h3>
-                  <p className="text-lg">Embark on your personal journey</p>
-                </div>
+            <Link to="/destinations/manali" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://risingkashmir.blr1.digitaloceanspaces.com/wp-content/uploads/2024/05/10010628/Image-View-1-30.png"
+                alt="Manali"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Manali</h3>
+                <p className="text-gray-200">Adventure paradise</p>
               </div>
             </Link>
 
-            <Link to="/adventure-treks" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
-                    alt="Adventure Treks"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <Mountain className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Adventure Treks</h3>
-                  <p className="text-lg">Challenge yourself in nature</p>
-                </div>
+            <Link to="/destinations/kasol" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://cdn.abhibus.com/2024/05/Things-to-Do-in-Kasol.jpg"
+                alt="Kasol"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Kasol</h3>
+                <p className="text-gray-200">Mini Israel of India</p>
               </div>
             </Link>
 
-            <Link to="/honeymoon" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80"
-                    alt="Honeymoon Trips"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <Heart className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Honeymoon Trips</h3>
-                  <p className="text-lg">Romantic getaways for couples</p>
-                </div>
+            <Link to="/destinations/sissu" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://static.thehosteller.com/hostel/images/sissu%20lake.jpg/sissu%20lake-1721310104493.jpg"
+                alt="Sissu"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Sissu</h3>
+                <p className="text-gray-200">Gateway to Spiti</p>
               </div>
             </Link>
 
-            <Link to="/corporate" className="block group">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div className="absolute inset-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-                    alt="Corporate Trips"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
-                </div>
-                <div className="relative p-8 flex flex-col items-center text-white text-center">
-                  <Briefcase className="w-12 h-12 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Corporate Trips</h3>
-                  <p className="text-lg">Team building and business retreats</p>
-                </div>
+            <Link to="/destinations/chopta-tungnath" className="relative group overflow-hidden rounded-lg cursor-pointer">
+              <img
+                src="https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_w_800_c_fill_g_auto_q_auto:good_f_jpg/v1481019868/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Chopta_Blog1.jpg"
+                alt="Chopta-Tungnath"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-xl font-bold text-white mb-1">Chopta-Tungnath</h3>
+                <p className="text-gray-200">Trek to heaven</p>
               </div>
             </Link>
           </div>
@@ -275,13 +377,10 @@ Message: ${formData.message}
         </div>
       </section>
 
-      {/* Hottest Destinations */}
+      {/* Trip Categories Section - Now with Swiper */}
       <section className="py-20 px-6 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center space-x-3 mb-16">
-            <Sun className="w-8 h-8 text-yellow-400" />
-            <h2 className="text-3xl md:text-4xl font-bold text-center">Popular Destinations</h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Explore Our Trip Categories</h2>
           
           <Swiper
             modules={[Autoplay]}
@@ -289,101 +388,77 @@ Message: ${formData.message}
             slidesPerView={1}
             breakpoints={{
               640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
               1024: { slidesPerView: 4 }
             }}
             autoplay={{ delay: 3000 }}
             loop={true}
             className="pb-12"
           >
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://journeybasket.com/wp-content/uploads/2023/05/main-banner.jpg"
-                  alt="Jibhi and Trithan Valley"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Jibhi & Trithan Valley</h3>
-                  <p className="text-gray-200">Hidden gems of Himachal</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://risingkashmir.blr1.digitaloceanspaces.com/wp-content/uploads/2024/05/10010628/Image-View-1-30.png"
-                  alt="Manali"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Manali</h3>
-                  <p className="text-gray-200">Adventure paradise</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://cdn.abhibus.com/2024/05/Things-to-Do-in-Kasol.jpg"
-                  alt="Kasol"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Kasol</h3>
-                  <p className="text-gray-200">Mini Israel of India</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://static.thehosteller.com/hostel/images/sissu%20lake.jpg/sissu%20lake-1721310104493.jpg"
-                  alt="Sissu"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Sissu</h3>
-                  <p className="text-gray-200">Gateway to Spiti</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_w_800_c_fill_g_auto_q_auto:good_f_jpg/v1481019868/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Chopta_Blog1.jpg"
-                  alt="Chopta-Tungnath"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Chopta-Tungnath</h3>
-                  <p className="text-gray-200">Trek to heaven</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="relative group overflow-hidden rounded-lg">
-                <img
-                  src="https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_c_fill_q_auto:good_f_auto_w_800_h_500/v1497334734/DO_NOT_USE_DISCOVER_INDIA_EDITORIAL/Sangla_Valleyc.jpg"
-                  alt="Sangla"
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-xl font-bold text-white mb-1">Sangla</h3>
-                  <p className="text-gray-200">Valley of tranquility</p>
-                </div>
-              </div>
-            </SwiperSlide>
+            {[
+              {
+                title: "Backpacking Trips",
+                description: "Adventure on a budget with like-minded travelers",
+                icon: Backpack,
+                image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80",
+                link: "/backpacking"
+              },
+              {
+                title: "Weekend Getaways",
+                description: "Perfect short breaks to recharge",
+                icon: Calendar,
+                image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+                link: "/weekend-getaways"
+              },
+              {
+                title: "Solo Travels",
+                description: "Embark on your personal journey",
+                icon: User,
+                image: "https://images.unsplash.com/photo-1503221043305-f7498f8b7888?auto=format&fit=crop&w=800&q=80",
+                link: "/solo-travels"
+              },
+              {
+                title: "Adventure Treks",
+                description: "Challenge yourself in nature",
+                icon: Mountain,
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                link: "/adventure-treks"
+              },
+              {
+                title: "Honeymoon Trips",
+                description: "Romantic getaways for couples",
+                icon: Heart,
+                image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80",
+                link: "/honeymoon"
+              },
+              {
+                title: "Corporate Trips",
+                description: "Team building and business retreats",
+                icon: Briefcase,
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+                link: "/corporate"
+              }
+            ].map((category, index) => (
+              <SwiperSlide key={index}>
+                <Link to={category.link} className="block group h-full">
+                  <div className="relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition h-[400px]">
+                    <div className="absolute inset-0">
+                      <img
+                        src={category.image}
+                        alt={category.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition"></div>
+                    </div>
+                    <div className="relative h-full flex flex-col items-center justify-center text-white text-center p-8">
+                      <category.icon className="w-12 h-12 mb-4" />
+                      <h3 className="text-2xl font-bold mb-2">{category.title}</h3>
+                      <p className="text-lg">{category.description}</p>
+                    </div>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </section>
@@ -438,103 +513,8 @@ Message: ${formData.message}
         </div>
       </section>
 
-      {/* YouTube Videos Section */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center space-x-2 mb-16">
-            <Camera className="w-8 h-8 text-red-600" />
-            <h2 className="text-3xl md:text-4xl font-bold text-center">Watch Our Travel Stories</h2>
-          </div>
-          
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 }
-            }}
-            autoplay={{ delay: 3000 }}
-            loop={true}
-            className="pb-12"
-          >
-            <SwiperSlide>
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative pb-[56.25%] h-0">
-                  <iframe
-                    src="https://www.youtube.com/embed/10eqIHbKQEk"
-                    title="Jibhi Travel Guide"
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">Kashmir Solo Trip</h3>
-                  <p className="text-gray-600">I Went to Kashmir Solo in Just ₹520</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative pb-[56.25%] h-0">
-                  <iframe
-                    src="https://www.youtube.com/embed/lrHFu10EixM"
-                    title="Manali Adventures"
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">Parviti Valley and Lapas village </h3>
-                  <p className="text-gray-600">A Dream Trip To Kasol (Part-2)</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative pb-[56.25%] h-0">
-                  <iframe
-                    src="https://www.youtube.com/embed/ddGBwns92QI"
-                    title="Kasol Experience"
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">Kasol Travel Vlog</h3>
-                  <p className="text-gray-600">My first Solo Trip</p>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative pb-[56.25%] h-0">
-                  <iframe
-                    src="https://www.youtube.com/embed/gMSY4DsJTgo"
-                    title="Spiti Valley"
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">Spiti Valley Guide</h3>
-                  <p className="text-gray-600">Ultimate road trip adventure</p>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-6 bg-gray-50">
+       {/* Testimonials Section */}
+       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center space-x-2 mb-16">
             <MessageCircle className="w-8 h-8 text-blue-600" />
@@ -636,6 +616,102 @@ Message: ${formData.message}
           </Swiper>
         </div>
       </section>
+
+      {/* YouTube Videos Section */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center space-x-2 mb-16">
+            <Camera className="w-8 h-8 text-red-600" />
+            <h2 className="text-3xl md:text-4xl font-bold text-center">Watch Our Travel Stories</h2>
+          </div>
+          
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={30}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 }
+            }}
+            navigation={true}
+            className="pb-12"
+          >
+            <SwiperSlide>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div className="relative pb-[56.25%] h-0">
+                  <iframe
+                    src="https://www.youtube.com/embed/10eqIHbKQEk"
+                    title="Jibhi Travel Guide"
+                    className="absolute top-0 left-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">Kashmir Solo Trip</h3>
+                  <p className="text-gray-600">I Went to Kashmir Solo in Just ₹520</p>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div className="relative pb-[56.25%] h-0">
+                  <iframe
+                    src="https://www.youtube.com/embed/lrHFu10EixM"
+                    title="Manali Adventures"
+                    className="absolute top-0 left-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">Parviti Valley and Lapas village </h3>
+                  <p className="text-gray-600">A Dream Trip To Kasol (Part-2)</p>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div className="relative pb-[56.25%] h-0">
+                  <iframe
+                    src="https://www.youtube.com/embed/ddGBwns92QI"
+                    title="Kasol Experience"
+                    className="absolute top-0 left-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">Kasol Travel Vlog</h3>
+                  <p className="text-gray-600">My first Solo Trip</p>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div className="relative pb-[56.25%] h-0">
+                  <iframe
+                    src="https://www.youtube.com/embed/gMSY4DsJTgo"
+                    title="Spiti Valley"
+                    className="absolute top-0 left-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">Spiti Valley Guide</h3>
+                  <p className="text-gray-600">Ultimate road trip adventure</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
+
+     
 
       {/* Contact Form Section - Add id for scrolling */}
       <section id="contact-form" className="py-20 px-6 bg-white">
