@@ -209,11 +209,16 @@ Message: ${formData.message}
       {/* Hero Section */}
       <header className="relative h-screen">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80"
-            alt="Travel Hero"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
-          />
+          >
+            <source src="https://i.imgur.com/SWe83Jn.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
 
