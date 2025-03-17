@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, MessageSquare as WhatsappIcon, User, ChevronDown } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
@@ -64,8 +64,6 @@ const tripCategories: TripCategory[] = [
 export function Home() {
   const location = useLocation();
   const state = location.state as { defaultMessage?: string } | null;
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
 
   const [formData, setFormData] = React.useState({
@@ -125,52 +123,10 @@ Message: ${formData.message}
     });
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
-
   return (
     <>
-      {/* Mobile Categories Navigation */}
-      <div className="md:hidden bg-white shadow-md overflow-x-auto">
-        <div className="flex whitespace-nowrap p-4">
-          {tripCategories.map((category) => (
-            <div
-              key={category.title}
-              className="relative inline-block mr-4 last:mr-0"
-            >
-              <button
-                onClick={() => setOpenDropdown(openDropdown === category.title ? null : category.title)}
-                className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-700 hover:text-blue-600 font-medium"
-              >
-                <span>{category.title}</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              
-              {openDropdown === category.title && (
-                <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                  {category.destinations.map((destination) => (
-                    <Link
-                      key={destination.name}
-                      to={destination.link}
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                      onClick={() => setOpenDropdown(null)}
-                    >
-                      {destination.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Desktop Categories Navigation Bar */}
-      <nav className="hidden md:block bg-white shadow-md sticky top-0 z-50">
+      {/* Update Desktop Categories Navigation Bar to only show on large screens */}
+      <nav className="hidden lg:block bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center space-x-8">
             {tripCategories.map((category) => (
@@ -225,29 +181,6 @@ Message: ${formData.message}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
           <h1 className="text-5xl md:text-7xl font-bold text-center mb-6">Discover Your Next Adventure</h1>
           <p className="text-xl md:text-2xl text-center mb-8">Explore the world's most exciting destinations</p>
-          
-          <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-xl p-4 w-full max-w-4xl">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 flex items-center space-x-2 border-b md:border-b-0 md:border-r border-gray-200 pb-4 md:pb-0 md:pr-4">
-                <Search className="w-5 h-5 text-gray-500" />
-                <input
-                  type="text"
-                  placeholder="Where do you want to go?"
-                  className="w-full text-gray-800 focus:outline-none"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <div className="flex items-center space-x-4">
-                <button 
-                  type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
       </header>
 
