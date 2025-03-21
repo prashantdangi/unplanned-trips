@@ -12,3 +12,34 @@
 }
 
 /* Add other styles as needed */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bg-primary {
+    background-color: #79c4f2; /* Ensure color consistency */
+  }
+
+  .text-primary {
+    color: #79c4f2;
+  }
+
+  .max-w-7xl {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .grid-cols-1 {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+  }
+
+  .md\\:grid-cols-4 {
+    grid-template-columns: 1fr; /* Override for smaller screens */
+  }
+
+  .md\\:hidden {
+    display: none; /* Hide elements on smaller screens */
+  }
+
+  .md\\:block {
+    display: block; /* Show elements on smaller screens */
+  }
+}
