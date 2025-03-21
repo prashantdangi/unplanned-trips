@@ -48,7 +48,7 @@ export function Navbar() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-black`}>
+      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-white`}>
         <div className="px-4 py-2 space-y-3">
           <Link 
             to="/backpacking" 
