@@ -4,7 +4,7 @@ import { Users, Award, Clock, Globe } from 'lucide-react';
 export function About() {
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="bg-blue-600 text-white py-20">
+      <div className="bg-primary text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">About Unplanned Trips</h1>
           <p className="text-xl max-w-3xl mx-auto">We're passionate about creating unforgettable travel experiences that push boundaries and create lasting memories.</p>
@@ -23,22 +23,22 @@ export function About() {
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">20+</h3>
               <p className="text-gray-600">Happy Travelers</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <Globe className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <Globe className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">10+</h3>
               <p className="text-gray-600">Locations</p>
             </div>
             {/* <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <Award className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">15+</h3>
               <p className="text-gray-600">Awards Won</p>
             </div> */}
             <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <Clock className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">24/7</h3>
               <p className="text-gray-600">Support</p>
             </div>

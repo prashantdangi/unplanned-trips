@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Example of updating a primary color */
+.bg-primary {
+  background-color: #79c4f2;
+}
+
+.text-primary {
+  color: #79c4f2;
+}
+
+/* Add other styles as needed */

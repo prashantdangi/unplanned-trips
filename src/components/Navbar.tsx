@@ -6,16 +6,16 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="relative z-10 bg-black">
+    <nav className="relative z-10 bg-primary">
       <div className="flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center space-x-2">
-          <Compass className="w-8 h-8 text-white" />
-          <span className="text-2xl font-bold text-white">UT</span>
+          <Compass className="w-8 h-8 text-black" />
+          <span className="text-2xl font-bold text-black">UT</span>
         </Link>
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden text-white"
+          className="md:hidden text-black"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -26,7 +26,7 @@ export function Navbar() {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6 text-white">
+        <div className="hidden md:flex items-center space-x-6 text-black">
           <Link to="/backpacking" className="hover:text-yellow-400">Backpacking</Link>
           <Link to="/weekend-getaways" className="hover:text-yellow-400">Weekend Getaways</Link>
           <Link to="/solo-travels" className="hover:text-yellow-400">Solo Travels</Link>
@@ -52,43 +52,43 @@ export function Navbar() {
         <div className="px-4 py-2 space-y-3">
           <Link 
             to="/backpacking" 
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-black hover:text-yellow-400 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Backpacking
           </Link>
           <Link 
             to="/weekend-getaways" 
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-black hover:text-yellow-400 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Weekend Getaways
           </Link>
           <Link 
             to="/solo-travels" 
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-black hover:text-yellow-400 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Solo Travels
           </Link>
           <Link 
             to="/about" 
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-black hover:text-yellow-400 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             About Us
           </Link>
           <Link 
             to="/contact" 
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-black hover:text-yellow-400 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
           </Link>
-          <div className="flex flex-col space-y-3 text-white py-2">
+          <div className="flex flex-col space-y-3 text-black py-2">
             <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5" />
-              <span>+91 9145823035</span>
+              <Phone className="w-5 h-5 text-black" />
+              <span className="text-black">+91 9145823035</span>
             </div>
             <Link 
               to="/?scroll=contact"

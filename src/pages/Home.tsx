@@ -289,38 +289,40 @@ Message: ${formData.message}
             {[
               {
                 title: "Backpacking Trips",
-                image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80",
+                icon: Backpack,
                 link: "/backpacking"
               },
               {
                 title: "Weekend Getaways",
-                image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+                icon: Calendar,
                 link: "/weekend-getaways"
               },
               {
                 title: "Solo Travels",
-                image: "https://images.unsplash.com/photo-1503221043305-f7498f8b7888?auto=format&fit=crop&w=800&q=80",
+                icon: User,
                 link: "/solo-travels"
               },
               {
                 title: "Adventure Treks",
-                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                icon: Mountain,
                 link: "/adventure-treks"
               },
               {
                 title: "Honeymoon Trips",
-                image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80",
+                icon: Heart,
                 link: "/honeymoon"
               },
               {
                 title: "Corporate Trips",
-                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+                icon: Briefcase,
                 link: "/corporate"
               }
             ].map((category, index) => (
               <Link to={category.link} key={index} className="block group">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 bg-cover bg-center rounded-full mb-2" style={{ backgroundImage: `url(${category.image})` }}></div>
+                  <div className="w-24 h-24 flex items-center justify-center bg-blue-700 rounded-full mb-2">
+                    <category.icon className="w-12 h-12 text-white" />
+                  </div>
                   <h3 className="text-lg font-semibold">{category.title}</h3>
                 </div>
               </Link>
