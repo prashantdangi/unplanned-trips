@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, MessageSquare as WhatsappIcon, User, ChevronDown } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -73,6 +73,8 @@ export function Home() {
     message: state?.defaultMessage || ''
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
   useEffect(() => {
     // Handle scroll to contact form when URL has ?scroll=contact
     if (location.search.includes('scroll=contact')) {
@@ -89,6 +91,9 @@ export function Home() {
         message: state.defaultMessage
       }));
     }
+
+    // Open the modal when the component mounts
+    setIsModalOpen(true);
   }, [location, state]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -123,8 +128,99 @@ Message: ${formData.message}
     });
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
+      {/* Modal for Contact Form */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg max-w-3xl mx-auto p-6 relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-2xl font-bold"
+            >
+              &times;
+            </button>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Have Doubts? Talk to Our Experts!</h2>
+              <p className="text-xl text-gray-600">We would love to craft a trip just for you</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Update Desktop Categories Navigation Bar to only show on large screens */}
       <nav className="hidden lg:block bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
@@ -183,6 +279,55 @@ Message: ${formData.message}
           <p className="text-xl md:text-2xl text-center mb-8">Explore the world's most exciting destinations</p>
         </div>
       </header>
+
+      {/* Circular Trip Categories Section */}
+      <section className="py-20 px-6 bg-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Explore Our Trip Categories</h2>
+          
+          <div className="flex justify-center space-x-8 overflow-x-auto">
+            {[
+              {
+                title: "Backpacking Trips",
+                image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80",
+                link: "/backpacking"
+              },
+              {
+                title: "Weekend Getaways",
+                image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+                link: "/weekend-getaways"
+              },
+              {
+                title: "Solo Travels",
+                image: "https://images.unsplash.com/photo-1503221043305-f7498f8b7888?auto=format&fit=crop&w=800&q=80",
+                link: "/solo-travels"
+              },
+              {
+                title: "Adventure Treks",
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                link: "/adventure-treks"
+              },
+              {
+                title: "Honeymoon Trips",
+                image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80",
+                link: "/honeymoon"
+              },
+              {
+                title: "Corporate Trips",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+                link: "/corporate"
+              }
+            ].map((category, index) => (
+              <Link to={category.link} key={index} className="block group">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-24 h-24 bg-cover bg-center rounded-full mb-2" style={{ backgroundImage: `url(${category.image})` }}></div>
+                  <h3 className="text-lg font-semibold">{category.title}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Hottest Destinations - Now Static */}
       <section className="py-20 px-6 bg-gray-50">
