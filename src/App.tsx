@@ -20,6 +20,7 @@ import {
   ChoptaTungnath
 } from './pages/destinations';
 import { ScrollToTop } from './components/ScrollToTop';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/destinations/kasol" element={<Kasol />} />
         <Route path="/destinations/sissu" element={<Sissu />} />
         <Route path="/destinations/chopta-tungnath" element={<ChoptaTungnath />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Footer />
     </div>

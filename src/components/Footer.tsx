@@ -21,6 +21,7 @@ export function Footer() {
             <li><Link to="/destinations" className="hover:text-black">Destinations</Link></li>
             {/* <li><Link to="/adventures" className="hover:text-black">Adventures</Link></li> */}
             <li><Link to="/contact" className="hover:text-black">Contact</Link></li>
+            <li><Link to="/privacy-policy" className="hover:text-black">Privacy Policy</Link></li>
           </ul>
         </div>
         
