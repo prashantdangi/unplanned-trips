@@ -33,10 +33,10 @@ export function Navbar() {
           <Link to="/about" className="hover:text-yellow-400">About Us</Link>
           <Link to="/contact" className="hover:text-yellow-400">Contact</Link>
           <div className="flex items-center space-x-4">
-            {/* <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5" />
-              <span>+91 9145823035</span>
-            </div> */}
+            <div className="flex items-center space-x-2">
+              <Phone className="w-5 h-5 text-black" />
+              <span className="text-black">+91 7494951776</span>
+            </div>
             <Link 
               to="/?scroll=contact" 
               className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg transition"
@@ -88,7 +88,7 @@ export function Navbar() {
           <div className="flex flex-col space-y-3 text-black py-2">
             <div className="flex items-center space-x-2">
               <Phone className="w-5 h-5 text-black" />
-              <span className="text-black">+91 9145823035</span>
+              <span className="text-black">+91 7494951776</span>
             </div>
             <Link 
               to="/?scroll=contact"

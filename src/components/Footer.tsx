@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Camera, Instagram, Youtube } from 'lucide-react';
+import { Compass, Camera, Instagram, Youtube, Phone } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -26,13 +26,13 @@ export function Footer() {
         </div>
         
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-black">Contact Info</h3>
-          <ul className="space-y-2 text-black">
-            <li>C1-602 Plot Nos 8, 11</li>
-            <li>Greater Noida, Uttar Pardesh (UP)</li>
-            <li>Phone: +91 9145823035</li>
-            {/* <li>Email: info@unplannedtrips.com</li> */}
-          </ul>
+          <div className="flex items-start space-x-4">
+            <Phone className="w-6 h-6 text-blue-600 mt-1" />
+            <div>
+              <h3 className="font-semibold mb-1">Phone</h3>
+              <p className="text-gray-600">+91 7494951776</p>
+            </div>
+          </div>
         </div>
         
         <div>
