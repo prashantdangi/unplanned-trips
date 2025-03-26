@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, MessageSquare as WhatsappIcon, User, ChevronDown } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, TrendingUp, Globe, Camera, Phone, Backpack, Plane, Mountain, Heart, Briefcase, Sun, MapPinned, PhoneCall, Luggage, Share2, MessageCircle, Star, User, ChevronDown } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { BsWhatsapp } from 'react-icons/bs';
 
 type TripCategory = {
   title: string;
@@ -259,7 +260,7 @@ Message: ${formData.message}
       </nav>
 
       {/* Hero Section */}
-      <header className="relative h-screen">
+      <header className="relative h-[60vh]">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -275,8 +276,8 @@ Message: ${formData.message}
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-center mb-6">Discover Your Next Adventure</h1>
-          <p className="text-xl md:text-2xl text-center mb-8">Explore the world's most exciting destinations</p>
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">Discover Your Next Adventure</h1>
+          <p className="text-lg md:text-xl text-center mb-6">Explore the world's most exciting destinations</p>
         </div>
       </header>
 
@@ -799,7 +800,7 @@ Message: ${formData.message}
      
 
       {/* Contact Form Section - Add id for scrolling */}
-      <section id="contact-form" className="py-20 px-6 bg-white">
+      <section id="contact-form" className="py-20 px-6 bg-white pb-24 lg:pb-20">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Have Doubts? Talk to Our Experts!</h2>
@@ -876,6 +877,40 @@ Message: ${formData.message}
           </form>
         </div>
       </section>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50">
+        <div className="flex justify-around items-center h-16 px-4">
+          {/* WhatsApp Button */}
+          <a 
+            href={`https://wa.me/919145823035`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center text-green-600"
+          >
+            <BsWhatsapp className="w-6 h-6" />
+            <span className="text-xs mt-1">WhatsApp</span>
+          </a>
+
+          {/* Send Query Button */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="flex flex-col items-center text-blue-600"
+          >
+            <MessageCircle className="w-6 h-6" />
+            <span className="text-xs mt-1">Send Query</span>
+          </button>
+
+          {/* Call Button */}
+          <a 
+            href="tel:+919145823035"
+            className="flex flex-col items-center text-red-600"
+          >
+            <Phone className="w-6 h-6" />
+            <span className="text-xs mt-1">Call</span>
+          </a>
+        </div>
+      </div>
     </>
   );
 }
