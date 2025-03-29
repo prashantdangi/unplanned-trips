@@ -6,25 +6,20 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="relative z-10 bg-blue-900">
+    <nav className="relative z-10 bg-white shadow-md">
       <div className="flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center space-x-2">
           <img 
             src="https://i.imgur.com/mweC03c.png" 
             alt="Logo" 
-            className="h-8" 
+            className="h-10 w-10 rounded-full object-cover" 
           />
-          <span className="text-white font-semibold text-xl">Unplanned Trips</span>
-          {/* <img 
-            src="https://i.imgur.com/mweC03c.png" 
-            alt="Logo" 
-            className="h-8" 
-          /> */}
+          <span className="text-gray-900 font-semibold text-xl">Unplanned Trips</span>
         </Link>
 
         {/* Mobile menu button */}
         <button 
-          className="block md:hidden text-white hover:text-yellow-400"
+          className="block md:hidden text-gray-900 hover:text-blue-600"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -36,20 +31,20 @@ export function Navbar() {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6 text-white">
-          <Link to="/backpacking" className="hover:text-yellow-400">Backpacking</Link>
-          <Link to="/weekend-getaways" className="hover:text-yellow-400">Weekend Getaways</Link>
-          <Link to="/solo-travels" className="hover:text-yellow-400">Solo Travels</Link>
-          <Link to="/about" className="hover:text-yellow-400">About Us</Link>
-          <Link to="/contact" className="hover:text-yellow-400">Contact</Link>
+        <div className="hidden md:flex items-center space-x-6 text-gray-900">
+          <Link to="/backpacking" className="hover:text-blue-600">Backpacking</Link>
+          <Link to="/weekend-getaways" className="hover:text-blue-600">Weekend Getaways</Link>
+          <Link to="/solo-travels" className="hover:text-blue-600">Solo Travels</Link>
+          <Link to="/about" className="hover:text-blue-600">About Us</Link>
+          <Link to="/contact" className="hover:text-blue-600">Contact</Link>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5 text-white" />
-              <span className="text-white">+91 7494951776</span>
+              <Phone className="w-5 h-5 text-gray-900" />
+              <span className="text-gray-900">+91 7494951776</span>
             </div>
             <Link 
               to="/?scroll=contact" 
-              className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg transition"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
             >
               Send Query
             </Link>
@@ -73,47 +68,47 @@ export function Navbar() {
         <div className="px-4 py-2 space-y-3">
           <Link 
             to="/backpacking" 
-            className="block text-black hover:text-yellow-400 py-2"
+            className="block text-gray-900 hover:text-blue-600 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Backpacking
           </Link>
           <Link 
             to="/weekend-getaways" 
-            className="block text-black hover:text-yellow-400 py-2"
+            className="block text-gray-900 hover:text-blue-600 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Weekend Getaways
           </Link>
           <Link 
             to="/solo-travels" 
-            className="block text-black hover:text-yellow-400 py-2"
+            className="block text-gray-900 hover:text-blue-600 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Solo Travels
           </Link>
           <Link 
             to="/about" 
-            className="block text-black hover:text-yellow-400 py-2"
+            className="block text-gray-900 hover:text-blue-600 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             About Us
           </Link>
           <Link 
             to="/contact" 
-            className="block text-black hover:text-yellow-400 py-2"
+            className="block text-gray-900 hover:text-blue-600 py-2"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
           </Link>
-          <div className="flex flex-col space-y-3 text-black py-2">
+          <div className="flex flex-col space-y-3 py-2">
             <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5 text-black" />
-              <span className="text-black">+91 7494951776</span>
+              <Phone className="w-5 h-5 text-gray-900" />
+              <span className="text-gray-900">+91 7494951776</span>
             </div>
             <Link 
               to="/?scroll=contact"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-center transition"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Send Query

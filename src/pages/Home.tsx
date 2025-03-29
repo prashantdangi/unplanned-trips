@@ -223,7 +223,7 @@ Message: ${formData.message}
       )}
 
       {/* Update Desktop Categories Navigation Bar to only show on large screens */}
-      <nav className="hidden lg:block bg-white shadow-md sticky top-0 z-50">
+      <nav className="hidden lg:block bg-blue-600 shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center space-x-8">
             {tripCategories.map((category) => (
@@ -234,7 +234,7 @@ Message: ${formData.message}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <button
-                  className="flex items-center space-x-1 py-4 px-2 text-gray-700 hover:text-blue-600 font-medium"
+                  className="flex items-center space-x-1 py-4 px-2 text-white hover:text-gray-100 font-medium"
                 >
                   <span>{category.title}</span>
                   <ChevronDown className="w-4 h-4" />
