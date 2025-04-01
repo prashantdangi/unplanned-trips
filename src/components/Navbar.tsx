@@ -6,7 +6,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="relative z-10 bg-white shadow-md">
+    <nav className="relative z-50 bg-white shadow-md">
       <div className="flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center space-x-2">
           <img 
@@ -38,10 +38,6 @@ export function Navbar() {
           <Link to="/about" className="hover:text-blue-600">About Us</Link>
           <Link to="/contact" className="hover:text-blue-600">Contact</Link>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              {/* <Phone className="w-5 h-5 text-gray-900" /> */}
-              {/* <span className="text-gray-900">+91 7494951776</span> */}
-            </div>
             <Link 
               to="/?scroll=contact" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
@@ -58,14 +54,18 @@ export function Navbar() {
           md:hidden 
           ${isMenuOpen ? 'block' : 'hidden'} 
           bg-white 
-          absolute 
+          fixed
           w-full 
-          top-full 
+          top-[64px]
           left-0 
+          right-0
+          bottom-0
           shadow-lg
+          z-40
+          overflow-y-auto
         `}
       >
-        <div className="px-4 py-2 space-y-3">
+        <div className="px-4 py-2 space-y-3 bg-white">
           <Link 
             to="/backpacking" 
             className="block text-gray-900 hover:text-blue-600 py-2"
@@ -102,10 +102,6 @@ export function Navbar() {
             Contact
           </Link>
           <div className="flex flex-col space-y-3 py-2">
-            <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5 text-gray-900" />
-              <span className="text-gray-900">+91 7494951776</span>
-            </div>
             <Link 
               to="/?scroll=contact"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center transition"

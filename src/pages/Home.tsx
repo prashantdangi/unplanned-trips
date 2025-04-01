@@ -114,8 +114,8 @@ Phone: ${formData.phone}
 Message: ${formData.message}
     `.trim();
 
-    // Create WhatsApp URL (replace YOUR_PHONE_NUMBER with your actual number including country code, e.g., 919145823035)
-    const whatsappUrl = `https://wa.me/919145823035?text=${encodeURIComponent(message)}`;
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/917494951776?text=${encodeURIComponent(message)}`;
     
     // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
@@ -260,7 +260,7 @@ Message: ${formData.message}
       </nav>
 
       {/* Hero Section */}
-      <header className="relative h-[60vh]">
+      <header className="relative z-10">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -591,8 +591,8 @@ Message: ${formData.message}
           <div className="text-center mt-12">
             <p className="text-lg">
               Call us or drop Hi on WhatsApp at{' '}
-              <a href="tel:+15551234567" className="text-blue-600 font-semibold">
-                (+91 9145823035)
+              <a href="tel:+917494951776" className="text-blue-600 font-semibold">
+                (+91 7494951776)
               </a>
             </p>
           </div>
@@ -883,7 +883,7 @@ Message: ${formData.message}
         <div className="flex justify-around items-center h-16 px-4">
           {/* WhatsApp Button */}
           <a 
-            href={`https://wa.me/919145823035`}
+            href={`https://wa.me/917494951776`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center text-green-600"
@@ -903,7 +903,7 @@ Message: ${formData.message}
 
           {/* Call Button */}
           <a 
-            href="tel:+919145823035"
+            href="tel:+917494951776"
             className="flex flex-col items-center text-red-600"
           >
             <Phone className="w-6 h-6" />
