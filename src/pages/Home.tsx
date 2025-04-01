@@ -260,7 +260,7 @@ Message: ${formData.message}
       </nav>
 
       {/* Hero Section */}
-      <header className="relative z-10">
+      <header className="relative z-10 h-[60vh]">
         <div className="absolute inset-0">
           <video
             autoPlay
