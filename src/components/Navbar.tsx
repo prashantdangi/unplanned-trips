@@ -39,8 +39,8 @@ export function Navbar() {
           <Link to="/contact" className="hover:text-blue-600">Contact</Link>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5 text-gray-900" />
-              <span className="text-gray-900">+91 7494951776</span>
+              {/* <Phone className="w-5 h-5 text-gray-900" /> */}
+              {/* <span className="text-gray-900">+91 7494951776</span> */}
             </div>
             <Link 
               to="/?scroll=contact" 

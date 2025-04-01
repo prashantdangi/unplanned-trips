@@ -704,7 +704,7 @@ Message: ${formData.message}
       </section>
 
       {/* YouTube Videos Section */}
-      <section className="py-20 px-6 bg-gray-50">
+     {/* <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center space-x-2 mb-16">
             <Camera className="w-8 h-8 text-red-600" />
@@ -795,7 +795,7 @@ Message: ${formData.message}
             </SwiperSlide>
           </Swiper>
         </div>
-      </section>
+      </section> */}
 
      
 

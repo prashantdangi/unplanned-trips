@@ -27,11 +27,11 @@ export function Footer() {
         
         <div>
           <div className="flex items-start space-x-4">
-            <Phone className="w-6 h-6 text-blue-600 mt-1" />
-            <div>
+            {/* <Phone className="w-6 h-6 text-blue-600 mt-1" /> */}
+            {/* <div>
               <h3 className="font-semibold mb-1">Phone</h3>
               <p className="text-white">+91 7494951776</p>
-            </div>
+            </div> */}
           </div>
         </div>
         
