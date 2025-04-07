@@ -96,7 +96,7 @@ export function PrivacyPolicy() {
               <div className="mt-4">
                 <p><strong>UnplannedTrips.co</strong></p>
                 <p>Email: info@unplannedtrips.com</p>
-                <p>Phone: +91 9145823035</p>
+                <p>Phone: +91 7494951776</p>
               </div>
             </section>
 
