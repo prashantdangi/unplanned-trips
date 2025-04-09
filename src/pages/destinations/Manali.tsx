@@ -48,7 +48,7 @@ export function Manali() {
                 <strong>Website:</strong> www.unplannedtrips.co
               </p>
               <a 
-                href="/pdf/MSK 2025.pdf" 
+                href="https://drive.google.com/file/d/1nbaLZWj3o_FgC0Qj7lOauQ89x8XEoX0W/view?usp=sharing" 
                 download
                 className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition flex items-center"
               >
